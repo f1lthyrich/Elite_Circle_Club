@@ -1,3 +1,5 @@
+Here is the updated HTML code. A new, shiny "See the Results" button has been added, which will download your image when clicked.
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -156,6 +158,45 @@
             background: rgba(255, 255, 255, 0.05);
             border-color: var(--accent);
             transform: translateY(-3px);
+        }
+
+        /* Shiny majestic button */
+        .btn-shiny {
+            background: linear-gradient(145deg, #f9c851, #f7b32b);
+            color: #0A0A0F;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            border: none;
+            box-shadow: 0 0 15px #f9c851, 0 4px 20px rgba(247, 179, 43, 0.5);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 215, 0, 0.6);
+        }
+
+        .btn-shiny::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.3), transparent);
+            transform: rotate(45deg);
+            animation: shine 3s infinite;
+        }
+
+        @keyframes shine {
+            0% { left: -50%; }
+            20% { left: 100%; }
+            100% { left: 100%; }
+        }
+
+        .btn-shiny:hover {
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 0 0 25px #f9c851, 0 6px 25px rgba(247, 179, 43, 0.7);
+            background: linear-gradient(145deg, #ffd966, #f7b32b);
         }
 
         /* Quick Navigation - Three Stripes Menu (Top Right) - VISIBLE ON ALL DEVICES */
@@ -797,60 +838,108 @@
             }
         }
 
-        /* Portfolio Section */
-        .portfolio-grid {
+        /* Portfolio Section - Revenue Showcase */
+        .portfolio-revenue-showcase {
             display: grid;
-            grid-template-columns: 1fr;
-            gap: 1.5rem;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            align-items: center;
+            background: linear-gradient(145deg, var(--card-bg), #0f0f1a);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border-color);
+            padding: 2.5rem;
             margin-top: 2rem;
+            box-shadow: var(--shadow-lg), 0 0 0 1px rgba(139, 92, 246, 0.2);
+            transition: var(--transition);
         }
 
-        @media (min-width: 768px) {
-            .portfolio-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
+        .portfolio-revenue-showcase:hover {
+            border-color: var(--accent);
+            box-shadow: var(--shadow-lg), 0 0 30px rgba(139, 92, 246, 0.3);
         }
 
-        .portfolio-item {
-            position: relative;
+        .revenue-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #fff, var(--accent-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .revenue-stats {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .stat-block {
+            text-align: left;
+        }
+
+        .stat-block .stat-number {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: var(--accent-light);
+            line-height: 1.2;
+            display: block;
+        }
+
+        .stat-block .stat-label {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .revenue-description {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            line-height: 1.7;
+            border-left: 3px solid var(--accent);
+            padding-left: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .revenue-image {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .revenue-image img {
+            max-width: 100%;
+            max-height: 280px;
+            width: auto;
+            height: auto;
             border-radius: var(--radius-md);
-            overflow: hidden;
-            aspect-ratio: 16/9;
-            background-color: var(--card-bg);
-        }
-
-        .portfolio-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
+            border: 2px solid rgba(139, 92, 246, 0.4);
+            box-shadow: var(--shadow-lg), 0 0 30px rgba(139, 92, 246, 0.3);
             transition: var(--transition);
+            object-fit: contain;
         }
 
-        .portfolio-item:hover img {
-            transform: scale(1.05);
-        }
-
-        .portfolio-overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(to top, rgba(10, 10, 15, 0.9), transparent);
-            padding: 1.5rem;
-            transform: translateY(20px);
-            opacity: 0;
-            transition: var(--transition);
+        .revenue-image img:hover {
+            transform: scale(1.02);
+            border-color: var(--accent);
         }
 
         @media (max-width: 768px) {
-            .portfolio-overlay {
-                padding: 1rem;
+            .portfolio-revenue-showcase {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                padding: 1.5rem;
             }
-        }
-
-        .portfolio-item:hover .portfolio-overlay {
-            transform: translateY(0);
-            opacity: 1;
+            .revenue-content h2 {
+                font-size: 2rem;
+            }
+            .stat-block .stat-number {
+                font-size: 1.8rem;
+            }
+            .revenue-image img {
+                max-height: 220px;
+            }
         }
 
         /* Testimonials */
@@ -1676,21 +1765,20 @@
                     <a href="#portfolio">Portfolio</a>
                     <a href="#testimonials">Testimonials</a>
                     <a href="#contact">Contact</a>
-                    <!-- Terms link in mobile menu triggers the popup -->
                     <a href="#" onclick="showTerms(); return false;">Terms & Conditions</a>
                 </div>
             </nav>
         </div>
     </header>
 
-    <!-- Quick Navigation - Three Stripes Button (Top Right Corner) - VISIBLE ON ALL DEVICES -->
+    <!-- Quick Navigation - Three Stripes Button (Top Right Corner) -->
     <div class="quick-nav-btn" id="quickNavBtn">
         <div class="stripes stripe1"></div>
         <div class="stripes stripe2"></div>
         <div class="stripes stripe3"></div>
     </div>
 
-    <!-- Quick Navigation Sidebar - VISIBLE ON ALL DEVICES (Terms triggers popup) -->
+    <!-- Quick Navigation Sidebar -->
     <div class="quick-nav-sidebar" id="quickNavSidebar">
         <h3>Quick Navigation</h3>
         <div class="quick-nav-links">
@@ -1718,7 +1806,6 @@
                 <i class="fas fa-envelope"></i>
                 <span>Contact</span>
             </a>
-            <!-- Terms & Conditions link - now triggers popup, not a section -->
             <a href="#" class="quick-nav-link" onclick="showTerms(); return false;">
                 <i class="fas fa-file-contract"></i>
                 <span>Terms & Conditions</span>
@@ -1955,45 +2042,44 @@
         </div>
     </section>
 
-    <!-- Portfolio Section -->
+    <!-- Portfolio Section - Revenue Showcase + Download Button -->
     <section id="portfolio">
         <div class="container">
             <div class="section-title">
                 <h2>Portfolio Showcase</h2>
-                <p>Transformative results delivered for our elite members across industries.</p>
+                <p>Real results, real revenue — transforming businesses at the highest level.</p>
             </div>
             
-            <div class="portfolio-grid">
-                <div class="portfolio-item fade-in">
-                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="AI Dashboard Design">
-                    <div class="portfolio-overlay">
-                        <h3>AI Analytics Dashboard</h3>
-                        <p>Real-time business intelligence platform with predictive analytics</p>
+            <!-- Revenue Showcase Block with Shiny Button -->
+            <div class="portfolio-revenue-showcase fade-in">
+                <div class="revenue-content">
+                    <h2>We generated over $1.5M in revenue</h2>
+                    <div class="revenue-stats">
+                        <div class="stat-block">
+                            <span class="stat-number">$1,729,433</span>
+                            <span class="stat-label">Current Portfolio Value</span>
+                        </div>
+                        <div class="stat-block">
+                            <span class="stat-number">6,810%</span>
+                            <span class="stat-label">24h Growth</span>
+                        </div>
+                        <div class="stat-block">
+                            <span class="stat-number">50+</span>
+                            <span class="stat-label">Elite Projects</span>
+                        </div>
                     </div>
+                    <div class="revenue-description">
+                        <p><i class="fas fa-chart-line" style="color: var(--accent); margin-right: 8px;"></i> This outstanding performance reflects our commitment to delivering transformative digital solutions for visionary founders. The portfolio surge of over $1.7M in a single day demonstrates the exponential growth potential our members unlock through AI-driven strategy, automation, and premium execution.</p>
+                        <p>Our rigorous selection process ensures that only the most promising ventures gain access to our exclusive circle — resulting in industry-leading returns and sustainable wealth creation.</p>
+                    </div>
+                    <!-- Shiny majestic download button -->
+                    <a href="https://image2url.com/r2/default/images/1773202407899-c13d8e5b-8bc1-4cf4-9daa-8e6afb1f86c7.jpg" download="elite_portfolio_proof.jpg" class="btn btn-shiny" style="margin-top: 1rem;">
+                        <i class="fas fa-download"></i> See the Results
+                    </a>
                 </div>
-                
-                <div class="portfolio-item fade-in">
-                    <img src="https://images.unsplash.com/photo-1558655146-9f40138edfeb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="E-commerce Platform">
-                    <div class="portfolio-overlay">
-                        <h3>Luxury E-commerce Platform</h3>
-                        <p>Custom store with 3D product visualization and AI recommendations</p>
-                    </div>
-                </div>
-                
-                <div class="portfolio-item fade-in">
-                    <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Mobile App UI">
-                    <div class="portfolio-overlay">
-                        <h3>Fintech Mobile App</h3>
-                        <p>Banking application with biometric security and AI financial advisor</p>
-                    </div>
-                </div>
-                
-                <div class="portfolio-item fade-in">
-                    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Data Visualization">
-                    <div class="portfolio-overlay">
-                        <h3>Marketing Automation System</h3>
-                        <p>Complete customer journey automation with AI-powered personalization</p>
-                    </div>
+                <div class="revenue-image">
+                    <!-- The image itself (optional, but kept for visual) -->
+                    <img src="https://image2url.com/r2/default/images/1773202407899-c13d8e5b-8bc1-4cf4-9daa-8e6afb1f86c7.jpg" alt="Portfolio Performance Chart">
                 </div>
             </div>
         </div>
@@ -2663,3 +2749,4 @@
     </script>
 </body>
 </html>
+```
